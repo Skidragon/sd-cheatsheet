@@ -44,4 +44,39 @@ type TupleToObject<T extends readonly any[]> = {
 
 type Return<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
 
+//declare global & modules
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      GRAPHCMS_CONTENT_ENDPOINT: string;
+      GRAPHCMS_AUTH_TOKEN: string;
+      GRAPHCMS_MUTATION_TOKEN: string;
+      FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY: string;
+      FIREBASE_SERVICE_ACCOUNT_PRIVATE_KEY_ID: string;
+      STRIPE_SECRET_KEY: string;
+      NODE_ENV: 'development' | 'production';
+      PORT?: string;
+      PWD: string;
+    }
+  }
+}
+declare module 'str-utils' {
+    export function strReverse(value: string): string;
+    export function strToLower(value: string): string;
+    export function  strToUpper(value: string): string;
+    export function strRandomize(value: string): string;
+    export function strInvertCase(value: string): string;
+}
+declare module 'stats' {
+    type Comparator = (a: string, b: string) => number;
+    type StatsUtil = (input: string, comparator: (input1: string, input2: string) => boolean) => number;
+    export const getMaxIndex: StatsUtil;
+    export const getMinIndex: StatsUtil;
+    export const getMaxElement: StatsUtil;
+    export const getMinElement: StatsUtil;
+    export const getMedianIndex: StatsUtil;
+    export const getMedianElement: StatsUtil;
+    export const getAverageValue: StatsUtil;
+}
+
 ```
