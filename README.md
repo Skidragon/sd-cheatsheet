@@ -1,10 +1,17 @@
 
 ## Typescript
+- https://github.com/type-challenges/type-challenges
+- https://medium.com/free-code-camp/typescript-curry-ramda-types-f747e99744ab
 ```ts
 
 type Awaited<T extends Promise<any>> = T extends Promise<infer R> ? R : never;
 
-type Concat<A,B> = [...A, ...B];
+type Concat<A extends any[], B extends any[]> = [...A, ...B];
+
+type Drop<N extends number, T extends any[], I extends any[] = []> = {
+    0: Drop<N, Tail<T>, Prepend<any, I>>
+    1: T
+}[ Length<T> extends N ? 1 : 0]
 
 type If<C extends boolean, T, F> = C extends true ? T : F;
 
@@ -18,7 +25,7 @@ type Includes<T extends readonly any[], U> = {
 
 
 type Last<T extends any[]> = {
-    0: Last<Tail<T>>,
+    0: Last<Tail<T>>
     1: Head<T>
 }[HasTail<T> extends true ? 1 : 0];
 
