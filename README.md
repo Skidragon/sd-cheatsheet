@@ -37,6 +37,10 @@ type Tail<T extends any[]> = ((...t: T) => any) extends ((_: any, ...tail: infer
 
 type TupleLength<T extends readonly any[]> = T['length'];
 
+type TupleToObject<T extends readonly any[]> = {
+  [P in T[number]]: P;
+}
+
 type Return<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
 
 ```
