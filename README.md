@@ -2,6 +2,7 @@
 ## Typescript
 - https://github.com/type-challenges/type-challenges
 - https://medium.com/free-code-camp/typescript-curry-ramda-types-f747e99744ab
+- https://typescript-exercises.github.io/#exercise=1&file=%2Findex.ts
 ```ts
 
 type Awaited<T extends Promise<any>> = T extends Promise<infer R> ? R : never;
