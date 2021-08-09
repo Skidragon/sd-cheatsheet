@@ -20,6 +20,16 @@ type First<T extends any[]> = T extends [any, ...any] : T[0] : never;
 
 type HasTail<T extends any[]> = T extends ([] | [any]) ? false : true;
 
+type PickReadonly<T, K extends keyof T = keyof T> = {
+  readonly [P in K]: T[P];
+} & {
+  [P in Exclude<keyof T, K>]: T[P];
+}
+
+type DeepReadonly<T> = keyof T extends never ? T : {
+  readonly [P in keyof T]: DeepReadonly<T[P]>;
+} 
+
 type Includes<T extends readonly any[], U> = {
   [P in T[number]]: true
 }[U] extends true ? true : false;
