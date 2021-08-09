@@ -52,6 +52,8 @@ type TupleToObject<T extends readonly any[]> = {
   [P in T[number]]: P;
 }
 
+type TupleToUnion<T extends any[]> = T[number];
+
 type Return<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
 
 //declare global & modules
