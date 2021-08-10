@@ -51,6 +51,10 @@ type Omit<T, K extends keyof T> = {
 
 type Pop<T extends any[]> = T extends [...infer L, any] ? L : [];
 
+type Push<T extends any[], E> = [...T, E];
+
+type Shift<T extends any[]> = T extends [any, ...infer R] ? R : [];
+
 type Tail<T extends any[]> = ((...t: T) => any) extends ((_: any, ...tail: infer TT) => any) ? TT : [];
 
 type TupleLength<T extends readonly any[]> = T['length'];
@@ -62,6 +66,8 @@ type TupleToObject<T extends readonly any[]> = {
 type TupleToUnion<T extends any[]> = T[number];
 
 type Return<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
+
+type Unshift<T extends any[], E> = [E, ...T];
 
 //declare global & modules
 declare global {
