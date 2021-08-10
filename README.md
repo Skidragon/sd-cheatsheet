@@ -49,7 +49,7 @@ type Omit<T, K extends keyof T> = {
   [P in Exclude<keyof T, K>]: T[P];
 }
 
-type Pop<T extends any[]> = T extends [...infer L, infer R] ? L : [];
+type Pop<T extends any[]> = T extends [...infer L, any] ? L : [];
 
 type Tail<T extends any[]> = ((...t: T) => any) extends ((_: any, ...tail: infer TT) => any) ? TT : [];
 
