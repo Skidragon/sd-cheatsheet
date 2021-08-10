@@ -7,6 +7,11 @@
 
 type Awaited<T extends Promise<any>> = T extends Promise<infer R> ? R : never;
 
+type Chainable<T = {}> = {
+  option<K extends string, V>(key: K extends keyof T ? never: K, value: V): Chainable<T & { [key in K]: V }>;
+  get(): T
+}
+
 type Concat<A extends any[], B extends any[]> = [...A, ...B];
 
 type Drop<N extends number, T extends any[], I extends any[] = []> = {
@@ -43,6 +48,8 @@ type Last<T extends any[]> = {
 type Omit<T, K extends keyof T> = {
   [P in Exclude<keyof T, K>]: T[P];
 }
+
+type Pop<T extends any[]> = T extends [...infer L, infer R] ? L : [];
 
 type Tail<T extends any[]> = ((...t: T) => any) extends ((_: any, ...tail: infer TT) => any) ? TT : [];
 
