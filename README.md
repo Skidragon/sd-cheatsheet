@@ -45,6 +45,12 @@ type Last<T extends any[]> = {
     1: Head<T>
 }[HasTail<T> extends true ? 1 : 0];
 
+//type Dog = { type: 'dog', sound: 'woof' }
+//type Cat = { type: 'cat', sound: 'meow' }v
+//type Animal = Dog | Cat; 
+//LookUp<Animal, 'dog'> should be type Dog
+type LookUp<U extends { type: string; }, T extends string> = U extends { type: T } ? U : never;
+
 type Omit<T, K extends keyof T> = {
   [P in Exclude<keyof T, K>]: T[P];
 }
@@ -57,6 +63,9 @@ type Shift<T extends any[]> = T extends [any, ...infer R] ? R : [];
 
 type Tail<T extends any[]> = ((...t: T) => any) extends ((_: any, ...tail: infer TT) => any) ? TT : [];
 
+type WhiteSpace = ' ' | '\t'  | '\n';
+type TrimLeft<S extends string> = S extends `${WhiteSpace}${infer R}` ? TrimLeft<R> : S;
+
 type TupleLength<T extends readonly any[]> = T['length'];
 
 type TupleToObject<T extends readonly any[]> = {
@@ -66,6 +75,7 @@ type TupleToObject<T extends readonly any[]> = {
 type TupleToUnion<T extends any[]> = T[number];
 
 type Return<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
+
 
 type Unshift<T extends any[], E> = [E, ...T];
 
