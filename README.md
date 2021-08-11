@@ -115,3 +115,55 @@ declare module 'stats' {
 }
 
 ```
+
+## CSS
+- Resources:
+- https://thecsspodcast.libsyn.com/#
+- https://cssreference.io/
+```css
+/* Create an animated underline for a link or text that goes across multiple lines */
+.animated-text-underline {
+  background-image: linear-gradient(90deg, red, blue);
+  /* The height of the underline */
+  background-size: 0% 3px;
+  /* background-repeat keeps the background from covering the height of the text*/
+  background-repeat: no-repeat;
+  /* position at the left bottom of the first character */
+  background-position: left bottom;
+  transition: background-size 300ms ease;
+}
+.animated-text-underline:hover {
+  background-size: 100% 3px;
+}
+
+.gradient-text {
+  background-image: linear-gradient(90deg, red, blue);
+  background-clip: text;
+  color: transparent;
+}
+
+/* animation: name duration timing-function delay iteration-count direction */
+.spin {
+  animation: spin 1s ease 500ms infinite alternate;
+}
+/* feature query */
+.title {
+@supports (background-clip: text) {
+    color: transparent;
+    background-clip: text;
+    background-image: radial-gradient(
+      128.88% 128.88% at 103.9% -10.39%,
+      #e84d70 0%,
+      #a337f6 53.09%,
+      #28a7ed 100%
+    );
+  }
+}
+
+```
+
+## NX
+
+```nx
+nx g @nrwl/workspace:remove
+```
