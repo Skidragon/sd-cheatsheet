@@ -64,8 +64,9 @@ type Shift<T extends any[]> = T extends [any, ...infer R] ? R : [];
 
 type Tail<T extends any[]> = ((...t: T) => any) extends ((_: any, ...tail: infer TT) => any) ? TT : [];
 
-type WhiteSpace = ' ' | '\t'  | '\n';
-type TrimLeft<S extends string> = S extends `${WhiteSpace}${infer R}` ? TrimLeft<R> : S;
+type TrimLeft<S extends string> = S extends `${TWhitespace}${infer R}` ? TrimLeft<R> : S;
+
+type Trim<S extends string> = S extends (`${infer L}${TWhitespace}`|`${TWhitespace}${infer R}`) ? Trim<(L|R)> : S;
 
 type TupleLength<T extends readonly any[]> = T['length'];
 
@@ -79,6 +80,8 @@ type Return<T extends (...args: any) => any> = T extends (...args: any) => infer
 
 
 type Unshift<T extends any[], E> = [E, ...T];
+  
+type TWhitespace = ' ' | '\t'  | '\n';
 
 //declare global & modules
 declare global {
