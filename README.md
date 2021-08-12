@@ -8,6 +8,8 @@
 
 type Awaited<T extends Promise<any>> = T extends Promise<infer R> ? R : never;
 
+type Capitalize<S extends string> = S extends `${infer C}${infer R}` ? `${Uppercase<C>}${R}` : '';
+
 type Chainable<T = {}> = {
   option<K extends string, V>(key: K extends keyof T ? never: K, value: V): Chainable<T & { [key in K]: V }>;
   get(): T
