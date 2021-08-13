@@ -80,6 +80,8 @@ type TupleToUnion<T extends any[]> = T[number];
 
 type Replace<S extends string, From extends string, To extends string> = From extends '' ? S : S extends `${infer L}${From}${infer R}` ? `${L}${To}${R}` : S;
 
+type ReplaceAll<S extends string, From extends string, To extends string> = From extends '' ? S : S extends `${infer L}${From}${infer R}` ? `${L}${To}${ReplaceAll<R,From, To>}` : S;
+
 type Return<T extends (...args: any) => any> = T extends (...args: any) => infer R ? R : any;
 
 
