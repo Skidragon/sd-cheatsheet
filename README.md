@@ -20,7 +20,7 @@ type Concat<A extends any[], B extends any[]> = [...A, ...B];
 type Drop<N extends number, T extends any[], I extends any[] = []> = {
     0: Drop<N, Tail<T>, Prepend<any, I>>
     1: T
-}[ Length<T> extends N ? 1 : 0]
+}[ Length<I> extends N ? 1 : 0]
 
 type If<C extends boolean, T, F> = C extends true ? T : F;
 
