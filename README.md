@@ -48,6 +48,8 @@ type Last<T extends any[]> = {
     1: Head<T>
 }[HasTail<T> extends true ? 1 : 0];
 
+type LengthOfString<S extends string> = StringToArray<S>['length'];
+
 //type Dog = { type: 'dog', sound: 'woof' }
 //type Cat = { type: 'cat', sound: 'meow' }v
 //type Animal = Dog | Cat; 
@@ -63,6 +65,8 @@ type Pop<T extends any[]> = T extends [...infer L, any] ? L : [];
 type Push<T extends any[], E> = [...T, E];
 
 type Shift<T extends any[]> = T extends [any, ...infer R] ? R : [];
+
+type StringToArray<S extends string, A extends any[] = []> = S extends '' ? A : S extends `${infer F}${infer R}` ? StringToArray<R, [F, ...A]> : A;
 
 type Tail<T extends any[]> = ((...t: T) => any) extends ((_: any, ...tail: infer TT) => any) ? TT : [];
 
