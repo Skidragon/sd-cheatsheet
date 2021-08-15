@@ -62,6 +62,8 @@ type Omit<T, K extends keyof T> = {
 
 type Pop<T extends any[]> = T extends [...infer L, any] ? L : [];
 
+type Permutation<T, P = T> = [T] extends [never] ?  [] : T extends any ? [T, ...Permutation<Exclude<P, T>>] : never
+
 type Push<T extends any[], E> = [...T, E];
 
 type Shift<T extends any[]> = T extends [any, ...infer R] ? R : [];
