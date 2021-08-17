@@ -38,6 +38,8 @@ type DeepReadonly<T> = keyof T extends never ? T : {
   readonly [P in keyof T]: DeepReadonly<T[P]>;
 } 
 
+type Flatten<T extends any[]> = T extends [infer H, ...infer TT] ? [...(H extends any[] ? Flatten<H> : [H]), ...Flatten<TT>] : T;
+
 type Includes<T extends readonly any[], U> = {
   [P in T[number]]: true
 }[U] extends true ? true : false;
