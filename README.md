@@ -6,6 +6,9 @@
 - https://softwareengineering.stackexchange.com/questions/405624/naming-of-union-and-intersection-types-in-typescript
 ```ts
 type AppendArgument<Fn extends (...args: any) => any, A> = Fn extends (...args: infer AA) => infer R ? ((...args: [...AA, A]) => R) : never;
+
+type AppendToObject<T extends {}, U extends string, V> = Merge<T & { [P in U]: V}>;
+
 type Awaited<T extends Promise<any>> = T extends Promise<infer R> ? R : never;
 
 type Capitalize<S extends string> = S extends `${infer C}${infer R}` ? `${Uppercase<C>}${R}` : '';
