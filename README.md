@@ -61,6 +61,10 @@ type LengthOfString<S extends string> = StringToArray<S>['length'];
 //LookUp<Animal, 'dog'> should be type Dog
 type LookUp<U extends { type: string; }, T extends string> = U extends { type: T } ? U : never;
 
+type Merge<T extends {}> = {
+  [P in keyof T]: T[P]
+}
+
 type Omit<T, K extends keyof T> = {
   [P in Exclude<keyof T, K>]: T[P];
 }
