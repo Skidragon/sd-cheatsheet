@@ -5,6 +5,14 @@
 - https://typescript-exercises.github.io/#exercise=1&file=%2Findex.ts
 - https://softwareengineering.stackexchange.com/questions/405624/naming-of-union-and-intersection-types-in-typescript
 ```ts
+type Absolute<T extends number | string | bigint> = T extends (number | bigint)
+  ? Absolute<`${T}`>
+  : T extends `${infer First}${infer Number}`
+  ? First extends '-'
+    ? `${Number}`
+    : T
+  : never
+  
 type AppendArgument<Fn extends (...args: any) => any, A> = Fn extends (...args: infer AA) => infer R ? ((...args: [...AA, A]) => R) : never;
 
 type AppendToObject<T extends {}, U extends string, V> = Merge<T & { [P in U]: V}>;
