@@ -12,7 +12,7 @@ type Absolute<T extends number | string | bigint> = T extends (number | bigint)
     ? `${Number}`
     : T
   : never
-  
+
 type AppendArgument<Fn extends (...args: any) => any, A> = Fn extends (...args: infer AA) => infer R ? ((...args: [...AA, A]) => R) : never;
 
 type AppendToObject<T extends {}, U extends string, V> = Merge<T & { [P in U]: V}>;
@@ -86,6 +86,8 @@ type Push<T extends any[], E> = [...T, E];
 type Shift<T extends any[]> = T extends [any, ...infer R] ? R : [];
 
 type StringToArray<S extends string, A extends any[] = []> = S extends '' ? A : S extends `${infer F}${infer R}` ? StringToArray<R, [F, ...A]> : A;
+
+type StringToUnion<T extends string> = T extends `${infer F}${infer R}` ? F | StringToUnion<R> : never;
 
 type Tail<T extends any[]> = ((...t: T) => any) extends ((_: any, ...tail: infer TT) => any) ? TT : [];
 
