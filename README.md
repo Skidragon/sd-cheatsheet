@@ -75,6 +75,8 @@ type Merge<T extends {}> = {
   [P in keyof T]: T[P]
 }
 
+type MergeTwoTypes<F extends {}, S extends {}> = { [P in Exclude<keyof F, keyof S>]: F[P]} & { [P in keyof S]: S[P]};
+
 type Omit<T, K extends keyof T> = {
   [P in Exclude<keyof T, K>]: T[P];
 }
