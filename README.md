@@ -4,6 +4,7 @@
 - https://medium.com/free-code-camp/typescript-curry-ramda-types-f747e99744ab
 - https://typescript-exercises.github.io/#exercise=1&file=%2Findex.ts
 - https://softwareengineering.stackexchange.com/questions/405624/naming-of-union-and-intersection-types-in-typescript
+- https://blog.logrocket.com/type-flowing-rethinking-typescript-typing-system/
 ```ts
 type Absolute<T extends number | string | bigint> = T extends (number | bigint)
   ? Absolute<`${T}`>
