@@ -228,6 +228,13 @@ export const List = <T extends { id: number }>({
     </div>
   )
 }
+// Getting Component Prop Types from Component
+import React from 'react'
+import { Greet } from '../props/Greet'
+
+export const CustomComponent = (props: React.ComponentProps<typeof Greet>) => {
+  return <div>{props.name}</div>
+}
 
 ```
 ## CSS
